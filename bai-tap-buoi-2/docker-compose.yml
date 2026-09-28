@@ -1,0 +1,12 @@
+services:
+  jupyter:
+    build: .
+    container_name: python-day2-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/workspace/notebooks
+      - ./data:/workspace/data
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
