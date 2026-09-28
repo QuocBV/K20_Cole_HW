@@ -1,0 +1,73 @@
+# Bai Tap
+
+Trong bài tập này, bạn sẽ được cung cấp sẵn mã nguồn của hai thành phần:
+
+analyzer: service Python phân tích dữ liệu
+
+webui: giao diện web hiển thị kết quả phân tích
+
+Nhiệm vụ của bạn là:
+
+  Viết Dockerfile cho từng service (analyzer và webui)
+
+  Viết docker-compose.yml để chạy cả hai service cùng lúc
+
+  Chạy thử hệ thống bằng Docker Compose
+
+  Quan sát logs và đảm bảo web UI hoạt động bình thường
+
+  project-root/
+  │
+  ├── analyzer/
+  │ ├── app.py
+  │ ├── requirements.txt
+  │ └── ...
+  │
+  ├── webui/
+  │ ├── web.py
+  │ ├── requirements.txt
+  │ └── ...
+  │
+  └──docker-compose.yml
+
+## Viết Dockerfile cho analyzer
+
+Yêu cầu Dockerfile:
+
+- Sử dụng base image nhẹ (gợi ý: python:3-slim)
+
+- COPY requirements.txt trước để tối ưu cache
+
+- RUN pip install -r requirements.txt
+
+- COPY toàn bộ mã nguồn vào container
+
+- CMD chạy file chính, ví dụ: python app.py
+
+
+## Viết Dockerfile cho webui
+
+- Dựng image phù hợp (Python/Node/…)
+
+- Cài dependency
+
+- COPY code
+
+- CMD chạy server web
+
+## Viết docker-compose.yml tại thư mục gốc
+
+Yêu cầu:
+
+- Gồm 2 services: analyzer và webui
+
+- Sử dụng build: ./analyzer và build: ./webui
+
+- Expose cổng cho webui, ví dụ: ports: ["5000:5000"]
+
+- Cho phép webui gọi được analyzer nếu cần (gợi ý: sử dụng service name trong URL)
+
+## Command
+docker compose build
+docker compose up -d
+curl http://localhost:8000 -> de test connection

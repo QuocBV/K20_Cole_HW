@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  analyzer:
+    build: ./analyzer
+    container_name: analyzer
+    ports:
+      - "5001:5000"
+
+  webui:
+    build: ./webui
+    container_name: webui
+    ports:
+      - "8000:8000"
+    depends_on:
+      - analyzer

@@ -1,0 +1,65 @@
+🐳 1. Docker Image Commands (Lệnh làm việc với Image)
+# Build image
+docker build -t name:tag .
+
+# Liệt kê images
+docker images
+
+# Xóa image
+docker rmi image_name
+
+# Pull image từ Docker Hub
+docker pull python:3.10
+
+📦 2. Docker Container Commands (Lệnh chạy container)
+# Run container
+docker run image_name
+
+# Run và mở port
+docker run -p 8080:80 image_name
+
+# Run dạng background (detached)
+docker run -d image_name
+
+# Run và auto remove
+docker run --rm image_name
+
+# Dừng container
+docker stop container_id
+
+# Xóa container
+docker rm container_id
+
+# Liệt kê container
+docker ps        # đang chạy
+docker ps -a     # tất cả (kể cả stopped)
+
+📂 3. Inspect / Debug container
+# Xem logs
+docker logs container_id
+
+# Follow logs
+docker logs -f container_id
+
+# Exec vào container (giống SSH)
+docker exec -it container_id bash
+
+🧹 4. Dọn dẹp Docker
+# Xóa container, image, network không dùng
+docker system prune
+
+# Xóa toàn bộ (cực mạnh — dangerous 😂)
+docker system prune -a
+
+🔗 5. Docker Compose Commands (rất thường dùng)
+# Build tất cả service
+docker compose build
+
+# Chạy tất cả service
+docker compose up -d
+
+# Dừng
+docker compose down
+
+# Xem logs
+docker compose logs -f
