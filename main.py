@@ -1,22 +1,17 @@
-diem1 = float(input("Điểm môn 1: "))
-diem2 = float(input("Điểm môn 2: "))
-diem3 = float(input("Điểm môn 3: "))
+import re
 
-# TODO: Tính điểm trung bình
-diem_tb = (diem1+diem2+diem3)/3
+emails = ["an@email.com", "BINH@EMAIL.VN", "invalid", "cuong@"]
 
-# TODO: Xếp loại theo bảng trên
-if diem_tb>=9:
-    xep_loai = "Xuất sắc"
-elif diem_tb>=8:
-    xep_loai = "Giỏi"
-elif diem_tb>=7:
-    xep_loai = "Khá"
-elif diem_tb>=5:
-    xep_loai = "Trung bình"
-else:
-    xep_loai = "Yếu"
 
-print()
-print(f"Điểm trung bình: {diem_tb:.2f}")
-print(f"Xếp loại       : {xep_loai}")
+def validEmail(emailStr: str):
+    pattern = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
+    if re.match(pattern, emailStr.lower()):
+        return True
+    return False
+
+
+for eml in emails:
+    if validEmail(eml):
+        print(f"Email hợp lệ: {eml}")
+    else:
+        print(f"Email không hợp lệ: {eml}")
